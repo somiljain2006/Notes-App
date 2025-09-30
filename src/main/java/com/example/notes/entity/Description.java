@@ -1,6 +1,5 @@
-package com.example.demo.content;
+package com.example.notes.entity;
 
-import com.fasterxml.jackson.annotation.JsonTypeId;
 import jakarta.persistence.*;
 
 @Entity

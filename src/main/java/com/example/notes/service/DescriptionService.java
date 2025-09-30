@@ -1,6 +1,7 @@
-package com.example.demo.content;
+package com.example.notes.service;
 
-import org.springframework.stereotype.Component;
+import com.example.notes.repository.DescriptionRepo;
+import com.example.notes.entity.Description;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,5 +1,7 @@
-package com.example.demo.content;
+package com.example.notes.controller;
 
+import com.example.notes.entity.Description;
+import com.example.notes.service.DescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
