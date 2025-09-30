@@ -34,4 +34,16 @@ public class DescriptionController {
                                          @PathVariable("id") Long id) {
         return descriptionService.updateDescription(description, id);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteDescriptionById(@PathVariable("id") Long id) {
+        descriptionService.deleteDescription(id);
+    }
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Description> getDescriptionById(@PathVariable Long id) {
+        Description desc = descriptionService.getDescriptionById(id);
+        return new ResponseEntity<>(desc, HttpStatus.OK);
+    }
+
 }

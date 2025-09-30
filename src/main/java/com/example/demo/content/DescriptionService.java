@@ -28,4 +28,13 @@ public class DescriptionService {
         exist.setText(updated.getText());
         return repository.save(exist);
     }
+
+    public void deleteDescription(Long id) {
+        repository.deleteById(id);
+    }
+
+    public Description getDescriptionById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Description not found"));
+    }
 }
