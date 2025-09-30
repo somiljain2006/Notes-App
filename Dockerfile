@@ -4,5 +4,5 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
 EXPOSE 8081
-COPY --from=build target/Notes-App.jar Notes-App.jar
-ENTRYPOINT ["java","-jar","/Notes-App.jar"]
+COPY --from=build target/app.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
