@@ -8,9 +8,17 @@ import java.util.List;
 @Service
 public class DescriptionService {
 
+    private final DescriptionRepo repository;
+
+    public DescriptionService(DescriptionRepo repository) {
+        this.repository = repository;
+    }
+
     public List<Description> getDescription() {
-        return List.of(
-                new Description(1L, "My name is Somil")
-        ); 
+        return repository.findAll();
+    }
+
+    public Description addDescription(Description d) {
+        return repository.save(d);
     }
 }

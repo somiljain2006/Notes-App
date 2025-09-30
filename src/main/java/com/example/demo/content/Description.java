@@ -1,6 +1,22 @@
 package com.example.demo.content;
 
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class Description {
+    @Id
+    @SequenceGenerator(
+            name = "user1_sequence",
+            sequenceName = "user1_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user1_sequence"
+    )
+
     private Long id;
     private String text;
 
@@ -11,6 +27,10 @@ public class Description {
 
     public Description(String text) {
         this.text = text;
+    }
+
+    public Description() {
+
     }
 
     public Long getId() {
