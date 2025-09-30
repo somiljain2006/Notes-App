@@ -74,6 +74,8 @@ public class Description {
         return "Description{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }
