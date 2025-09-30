@@ -28,4 +28,10 @@ public class DescriptionController {
         Description saved = descriptionService.addDescription(description);
         return new ResponseEntity<>(saved, HttpStatus.OK);
     }
+
+    @PutMapping("/{id}")
+    public Description updateDescription(@RequestBody Description description,
+                                         @PathVariable("id") Long id) {
+        return descriptionService.updateDescription(description, id);
+    }
 }
