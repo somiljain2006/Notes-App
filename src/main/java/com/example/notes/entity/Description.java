@@ -1,9 +1,14 @@
 package com.example.notes.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table
+@Table(name = "content")
 public class Description {
     @Id
     @SequenceGenerator(
@@ -18,6 +23,14 @@ public class Description {
 
     private Long id;
     private String text;
+
+    @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime updatedAt;
 
     public Description(Long id, String text) {
         this.id = id;
@@ -46,6 +59,14 @@ public class Description {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
     @Override
