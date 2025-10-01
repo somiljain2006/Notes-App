@@ -84,6 +84,14 @@ public final class Description {
     this.text = text;
   }
 
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
+  }
+
+  public LocalDateTime getUpdatedAt() {
+    return updatedAt;
+  }
+
   @Override
   public String toString() {
     return "id=" + "Description{" + id + ", text='"

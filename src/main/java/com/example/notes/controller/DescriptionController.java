@@ -1,9 +1,12 @@
 
 package com.example.notes.controller;
 
+import com.example.notes.dto.DescriptionDTO;
 import com.example.notes.entity.Description;
+import com.example.notes.mapper.DescriptionMapper;
 import com.example.notes.service.DescriptionService;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,37 +41,47 @@ public class DescriptionController {
 
   /** GET request for all notes. */
   @GetMapping
-  public List<Description> getDescription() {
-    return descriptionService.getDescription();
+  public List<DescriptionDTO> getDescription() {
+    return descriptionService.getDescription()
+      .stream()
+      .map(DescriptionMapper::toDTO)
+      .collect(Collectors.toList());
   }
 
   /** POST request to create new notes. */
   @PostMapping("/create")
-  public ResponseEntity<Description> addDescription(
-          @RequestBody final Description description) {
-    Description saved = descriptionService.addDescription(description);
-    return new ResponseEntity<>(saved, HttpStatus.OK);
+  public ResponseEntity<DescriptionDTO> addDescription(
+      @RequestBody final DescriptionDTO descriptionDTO) {
+    Description toSave = DescriptionMapper.toEntity(descriptionDTO);
+    Description saved = descriptionService.addDescription(toSave);
+    DescriptionDTO savedDto = DescriptionMapper.toDTO(saved);
+    return new ResponseEntity<>(savedDto, HttpStatus.CREATED);
   }
 
   /** PUT request to update notes. */
   @PutMapping("/{id}")
-  public Description updateDescription(
-      @RequestBody final Description description,
+  public ResponseEntity<DescriptionDTO> updateDescription(
+      @RequestBody final DescriptionDTO descriptionDTO,
       @PathVariable("id") final Long id) {
-    return descriptionService.updateDescription(description, id);
+    Description toUpdate = DescriptionMapper.toEntity(descriptionDTO);
+    Description updated = descriptionService.updateDescription(toUpdate, id);
+    DescriptionDTO updatedDto = DescriptionMapper.toDTO(updated);
+    return ResponseEntity.ok(updatedDto);
   }
 
   /** DELETE request for notes. */
   @DeleteMapping("/{id}")
-  public void deleteDescriptionById(@PathVariable("id") final Long id) {
+  public ResponseEntity<Void> deleteDescriptionById(@PathVariable("id") final Long id) {
     descriptionService.deleteDescription(id);
+    return ResponseEntity.noContent().build();
   }
 
   /** GET request to show specific notes. */
   @GetMapping("/id/{id}")
-  public ResponseEntity<Description> getDescriptionById(
-          @PathVariable final Long id) {
+  public ResponseEntity<DescriptionDTO> getDescriptionById(
+      @PathVariable final Long id) {
     Description desc = descriptionService.getDescriptionById(id);
-    return new ResponseEntity<>(desc, HttpStatus.OK);
+    DescriptionDTO dto = DescriptionMapper.toDTO(desc);
+    return new ResponseEntity<>(dto, HttpStatus.OK);
   }
 }
