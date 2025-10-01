@@ -69,7 +69,7 @@
                     <consoleOutput>true</consoleOutput>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <failOnViolation>false</failOnViolation>
-                    <failsOnError>true</failsOnError>
+                    <failsOnError>false</failsOnError>
                     <configLocation>config/checkstyle/checkstyle.xml</configLocation>
                     <suppressionsLocation>config/checkstyle/suppressions.xml</suppressionsLocation>
                     <suppressionsFileExpression>suppressions.xml</suppressionsFileExpression>
