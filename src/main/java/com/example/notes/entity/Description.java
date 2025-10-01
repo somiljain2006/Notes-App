@@ -1,81 +1,103 @@
+
 package com.example.notes.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
-
+/** Entity representing the content of notes. */
 @Entity
 @Table(name = "content")
-public class Description {
-    @Id
-    @SequenceGenerator(
+public final class Description {
+
+  /** Primary key for the content. */
+  @Id
+  @SequenceGenerator(
             name = "user1_sequence",
             sequenceName = "user1_sequence",
             allocationSize = 1
-    )
-    @GeneratedValue(
+  )
+  @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "user1_sequence"
-    )
+  )
+  private Long id;
 
-    private Long id;
-    private String text;
+  /** The main text content. */
+  private String text;
 
-    @CreationTimestamp
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime createdAt;
+  /** Time when the content was created. */
+  @CreationTimestamp
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private LocalDateTime createdAt;
 
-    @UpdateTimestamp
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime updatedAt;
+  /** Timestamp when the content was last updated. */
+  @UpdateTimestamp
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private LocalDateTime updatedAt;
 
-    public Description(Long id, String text) {
-        this.id = id;
-        this.text = text;
-    }
+  /** Creates a description with both ID and text. */
+  public Description(final Long id, final String text) {
+    this.id = id;
+    this.text = text;
+  }
 
-    public Description(String text) {
-        this.text = text;
-    }
+  /**
+  * Creates a Description with the given text.
+  * @param text the content of the note
+  */
+  public Description(final String text) {
+    this.text = text;
+  }
 
-    public Description() {
+  /** Default constructor required by JPA. */
+  public Description() { }
 
-    }
+  /** return the entity ID */
+  public Long getId() {
+    return id;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  /**
+   * set the entity ID
+   * @param id the id of the notes
+   */
+  public void setId(final Long id) {
+    this.id = id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  /** return the content text. */
+  public String getText() {
+    return text;
+  }
 
-    public String getText() {
-        return text;
-    }
+  /**
+   * set the content text
+   * @param text the content of the note
+   * */
+  public void setText(final String text) {
+    this.text = text;
+  }
 
-    public void setText(String text) {
-        this.text = text;
-    }
+  /** return the creation timestamp. */
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
+  }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+  /** return the update timestamp. */
+  public LocalDateTime getUpdatedAt() {
+    return updatedAt;
+  }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    @Override
-    public String toString() {
-        return "Description{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "id=" + "Description{" + id + ", text='" + text + '\'' + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
+  }
 }
