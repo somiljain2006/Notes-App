@@ -23,13 +23,13 @@ public class DescriptionController {
 
   /**
   * Service layer component responsible for managing Description entities.
-  * Provides business logic for creating, reading, updating, and deleting description objects.
+  * Provides business logic for creating, reading, updating, and deleting
+  * description objects.
   */
   private final DescriptionService descriptionService;
 
   /**
      * Dependency injection.
-     * @param descriptionService is an instance.
   */
   @Autowired
   public DescriptionController(final DescriptionService descriptionService) {
@@ -44,26 +44,30 @@ public class DescriptionController {
 
   /** POST request to create new notes. */
   @PostMapping("/create")
-  public ResponseEntity<Description> addDescription(@RequestBody final Description description) {
+  public ResponseEntity<Description> addDescription(
+          @RequestBody final Description description) {
     Description saved = descriptionService.addDescription(description);
     return new ResponseEntity<>(saved, HttpStatus.OK);
   }
 
   /** PUT request to update notes. */
   @PutMapping("/{id}")
-  public Description updateDescription(@RequestBody final Description description, @PathVariable("id") final Long id) {
+  public Description updateDescription(
+      @RequestBody final Description description,
+      @PathVariable("id") final Long id) {
     return descriptionService.updateDescription(description, id);
   }
 
   /** DELETE request for notes. */
   @DeleteMapping("/{id}")
-  public void deleteDescriptionById(@PathVariable("id") Long id) {
+  public void deleteDescriptionById(@PathVariable("id") final Long id) {
     descriptionService.deleteDescription(id);
   }
 
   /** GET request to show specific notes. */
   @GetMapping("/id/{id}")
-  public ResponseEntity<Description> getDescriptionById(@PathVariable Long id) {
+  public ResponseEntity<Description> getDescriptionById(
+          @PathVariable final Long id) {
     Description desc = descriptionService.getDescriptionById(id);
     return new ResponseEntity<>(desc, HttpStatus.OK);
   }

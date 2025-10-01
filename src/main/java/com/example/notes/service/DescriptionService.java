@@ -1,41 +1,51 @@
+
 package com.example.notes.service;
 
-import com.example.notes.repository.DescriptionRepo;
 import com.example.notes.entity.Description;
+import com.example.notes.repository.DescriptionRepo;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+/** Service-layer component that contains business logic. */
 @Service
 public class DescriptionService {
 
-    private final DescriptionRepo repository;
+  /** Repository for performing CRUD operations. */
+  private final DescriptionRepo repository;
 
-    public DescriptionService(DescriptionRepo repository) {
-        this.repository = repository;
-    }
+  /** Repository to be used for database operation. */
+  public DescriptionService(final DescriptionRepo repository) {
+    this.repository = repository;
+  }
 
-    public List<Description> getDescription() {
-        return repository.findAll();
-    }
+  /** Getting all the notes. */
+  public List<Description> getDescription() {
+    return repository.findAll();
+  }
 
-    public Description addDescription(Description d) {
-        return repository.save(d);
-    }
+  /** Adding the description. */
+  public Description addDescription(final Description d) {
+    return repository.save(d);
+  }
 
-    public Description updateDescription(Description updated, Long id) {
-        Description exist = repository.findById(id)
+  /** Updating the description. */
+  public Description updateDescription(
+          final Description updated, final Long id) {
+    Description exist = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Not found"));
-        exist.setText(updated.getText());
-        return repository.save(exist);
-    }
+    exist.setText(updated.getText());
+    return repository.save(exist);
+  }
 
-    public void deleteDescription(Long id) {
-        repository.deleteById(id);
-    }
+  /** Deleting the note. */
+  public void deleteDescription(final Long id) {
+    repository.deleteById(id);
+  }
 
-    public Description getDescriptionById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Description not found"));
-    }
+  /** Getting a single note's description. */
+  public Description getDescriptionById(
+          final Long id) {
+    return repository.findById(id)
+           .orElseThrow(() -> new RuntimeException("Description not found"));
+  }
 }

@@ -51,23 +51,22 @@ public final class Description {
 
   /**
   * Creates a Description with the given text.
-  * @param text the content of the note
   */
   public Description(final String text) {
     this.text = text;
   }
 
   /** Default constructor required by JPA. */
-  public Description() { }
+  public Description() {
+  }
 
-  /** return the entity ID */
+  /** return the entity ID. */
   public Long getId() {
     return id;
   }
 
   /**
-   * set the entity ID
-   * @param id the id of the notes
+   * set the entity ID.
    */
   public void setId(final Long id) {
     this.id = id;
@@ -79,25 +78,17 @@ public final class Description {
   }
 
   /**
-   * set the content text
-   * @param text the content of the note
+   * set the content text.
    * */
   public void setText(final String text) {
     this.text = text;
   }
 
-  /** return the creation timestamp. */
-  public LocalDateTime getCreatedAt() {
-    return createdAt;
-  }
-
-  /** return the update timestamp. */
-  public LocalDateTime getUpdatedAt() {
-    return updatedAt;
-  }
-
   @Override
   public String toString() {
-    return "id=" + "Description{" + id + ", text='" + text + '\'' + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
+    return "id=" + "Description{" + id + ", text='"
+            + text + '\'' + ", createdAt="
+            + createdAt + ", updatedAt="
+            + updatedAt + '}';
   }
 }
