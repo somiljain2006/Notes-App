@@ -37,12 +37,12 @@ public final class Description {
 
   /** Time when the content was created. */
   @CreationTimestamp
-  @JsonFormat(pattern = "yyyy-MM-dd")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime createdAt;
 
   /** Timestamp when the content was last updated. */
   @UpdateTimestamp
-  @JsonFormat(pattern = "yyyy-MM-dd")
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
   private LocalDateTime updatedAt;
 
   /** Default constructor required by JPA. */
