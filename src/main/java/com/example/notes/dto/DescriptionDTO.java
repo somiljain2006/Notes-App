@@ -17,13 +17,6 @@ public class DescriptionDTO {
   public DescriptionDTO() {
   }
 
-  public DescriptionDTO(final Long id, final String text, final LocalDateTime createdAt, final LocalDateTime updatedAt) {
-    this.id = id;
-    this.text = text;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-  }
-
   public Long getId() {
     return id;
   }

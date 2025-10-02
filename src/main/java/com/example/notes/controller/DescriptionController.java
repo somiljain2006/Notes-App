@@ -4,9 +4,9 @@ package com.example.notes.controller;
 import com.example.notes.dto.DescriptionDTO;
 import com.example.notes.entity.Description;
 import com.example.notes.mapper.DescriptionMapper;
-import com.example.notes.service.DescriptionService;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.example.notes.service.interfaces.DescriptionServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,13 +29,13 @@ public class DescriptionController {
   * Provides business logic for creating, reading, updating, and deleting
   * description objects.
   */
-  private final DescriptionService descriptionService;
+  private final DescriptionServiceInterface descriptionService;
 
   /**
      * Dependency injection.
   */
   @Autowired
-  public DescriptionController(final DescriptionService descriptionService) {
+  public DescriptionController(final DescriptionServiceInterface descriptionService) {
     this.descriptionService = descriptionService;
   }
 

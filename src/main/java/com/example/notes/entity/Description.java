@@ -43,19 +43,6 @@ public final class Description {
   @JsonFormat(pattern = "yyyy-MM-dd")
   private LocalDateTime updatedAt;
 
-  /** Creates a description with both ID and text. */
-  public Description(final Long id, final String text) {
-    this.id = id;
-    this.text = text;
-  }
-
-  /**
-  * Creates a Description with the given text.
-  */
-  public Description(final String text) {
-    this.text = text;
-  }
-
   /** Default constructor required by JPA. */
   public Description() {
   }
