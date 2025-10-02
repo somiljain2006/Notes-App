@@ -2,6 +2,7 @@
 package com.example.notes.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +32,7 @@ public final class Description {
   private Long id;
 
   /** The main text content. */
+  @Column(length = 100)
   private String text;
 
   /** Time when the content was created. */
